@@ -40,3 +40,13 @@ result = crew.kickoff()
 print(result)
 
 
+#우리가 하려는 것, 배우고 있는 것
+# 파이선을 활용한 LLM - ollama, CrewAI(AI agent 랜딩 페이지 제작)
+# 언어 모델 핸들링하고나서 결과값을 자바 서버에 내려줘야함.
+# LLM이 만들어낸 결과값을 어떻게 자바 서버에 내려주는지?
+# -Rest API(Python FrameWork) =>Java Server
+
+# Flask(쉬움, 진입장벅 낮음), Fast API(진입장벽 있는 편)=>(1) 깃헙 스타 (2) 구글 검색량
+# - AI기업, 메인 서버, AI관련 인퍼런스(추론값) 값은 Python 백엔드로 내려주는 형태
+
+# java-jinja template
