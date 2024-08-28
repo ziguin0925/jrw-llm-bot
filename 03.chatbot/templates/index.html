@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>챗봇 대화</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f0f0f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+
+        .chat-container {
+            background-color: #ffffff;
+            width: 100%;
+            max-width: 450px;
+            border-radius: 15px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 85vh;
+            padding: 10px;
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        .messages {
+            flex-grow: 1;
+            overflow-y: auto;
+            padding-right: 10px;
+            padding-bottom: 20px;
+            margin-bottom: 10px;
+        }
+
+        .message-wrapper {
+            display: flex;
+            margin: 8px 0;
+        }
+
+        .message {
+            padding: 12px 18px;
+            border-radius: 20px;
+            max-width: 75%;
+            font-size: 14px;
+            word-wrap: break-word;
+            word-break: break-all;
+        }
+
+        .message.bot {
+            background-color: #e0e0e0;
+            color: #333;
+            border-bottom-left-radius: 0;
+            align-self: flex-start;
+            margin-right: auto;
+        }
+
+        .message.user {
+            background-color: #007bff;
+            color: white;
+            text-align: right;
+            border-bottom-right-radius: 0;
+            align-self: flex-end;
+            margin-left: auto;
+        }
+
+        .input-form {
+            display: flex;
+            border-top: 1px solid #ddd;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border-radius: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            width: 100%;
+            box-sizing: border-box;
+            position: relative;
+            z-index: 10;
+        }
+
+        .input-form input[type="text"] {
+            flex: 1;
+            padding: 10px 15px;
+            font-size: 14px;
+            border: none;
+            border-radius: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            outline: none;
+            background-color: #f4f4f9;
+        }
+
+        .input-form button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 14px;
+            border-radius: 30px;
+            margin-left: 10px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 123, 255, 0.3);
+            transition: background-color 0.3s ease;
+        }
+
+        .input-form button:hover {
+            background-color: #0056b3;
+        }
+
+        .input-form input::placeholder {
+            color: #999;
+            font-style: italic;
+        }
+
+        /* Custom scrollbar styling */
+        .messages::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .messages::-webkit-scrollbar-thumb {
+            background-color: #007bff;
+            border-radius: 4px;
+        }
+
+        .messages::-webkit-scrollbar-track {
+            background-color: #f0f0f5;
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        <div class="messages">
+            {% for message in messages %}
+                <div class="message-wrapper">
+                    {% if message.role == "user" %}
+                        <div class="message user">
+                            {{ message.text }}
+                        </div>
+                    {% elif message.role == "bot" %}
+                        <div class="message bot">
+                            {{ message.text }}
+                        </div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+
+        <form class="input-form" action="/" method="post">
+            <input type="text" name="user_input" placeholder="채팅을 입력하세요:" required>
+            <button type="submit">Send</button>
+        </form>
+    </div>
+</body>
+</html>
